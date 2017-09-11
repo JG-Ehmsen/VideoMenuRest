@@ -9,7 +9,7 @@ namespace VideoRestAPI.Controllers
     [Route("api/[controller]")]
     public class VideosController : Controller
     {
-        BLLFacade facade = new BLLFacade();
+        BLLFacade facade = BLLFacade.getInstance();
 
         // GET: api/Videos
         [HttpGet]
@@ -34,9 +34,13 @@ namespace VideoRestAPI.Controllers
         
         // PUT: api/Videos/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]VideoBO vid)
+        public IActionResult Put(int id, [FromBody]VideoBO vid)
         {
-            facade.VideoService.Update(vid);
+            if (id != vid.ID)
+            {
+                return BadRequest("Path ID does not match customer ID in JSON object.");
+            }
+            return Ok(facade.VideoService.Update(vid));
         }
         
         // DELETE: api/ApiWithActions/5
