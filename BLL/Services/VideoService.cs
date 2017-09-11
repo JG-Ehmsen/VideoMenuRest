@@ -14,6 +14,32 @@ namespace BLL.Services
         public VideoService(DALFacade facade)
         {
             this.facade = facade;
+            GenerateVideos(20);
+        }
+
+        private void GenerateVideos(int count)
+        {
+            String[] Authors = { "Billy Bob", "MacMoe", "SuperCoolDUde99", "Danny the Dude", "Me", "RealPerson", "KimK", "Someone Else" };
+
+            String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DYI" };
+
+            Random rnd = new Random();
+
+
+            for (int i = 1; i < count; i++)
+            {
+                VideoBO vid = new VideoBO()
+                {
+                    Title = "Video " + i
+                };
+                int r = rnd.Next(Authors.Length);
+                vid.Author = Authors[r];
+
+                r = rnd.Next(Genres.Length);
+                vid.Genre = Genres[r];
+
+                Add(vid);
+            }
         }
 
         public void Add(VideoBO video)

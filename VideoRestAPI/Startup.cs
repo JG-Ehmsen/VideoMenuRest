@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using BLL;
 using BLL.BO;
 
@@ -35,21 +29,21 @@ namespace VideoRestAPI
             {
                 app.UseDeveloperExceptionPage();
 
-                var facade = new BLLFacade();
-                facade.VideoService.Add(
-                    new VideoBO()
-                    {
-                        Title = "HEhehe",
-                        Author = "hashdsah",
-                        Genre = "Random"
-                    });
-                facade.VideoService.Add(
-                    new VideoBO()
-                    {
-                        Title = "asdasd",
-                        Author = "hasda",
-                        Genre = "ddass"
-                    });
+                //var facade = new BLLFacade();
+                //facade.VideoService.Add(
+                //    new VideoBO()
+                //    {
+                //        Title = "HEhehe",
+                //        Author = "hashdsah",
+                //        Genre = "Random"
+                //    });
+                //facade.VideoService.Add(
+                //    new VideoBO()
+                //    {
+                //        Title = "asdasd",
+                //        Author = "hasda",
+                //        Genre = "ddass"
+                //    });
             }
 
             app.UseMvc();
