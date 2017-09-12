@@ -13,7 +13,7 @@ namespace DAL
         {
             get
             {
-                return new UnitOfWorkMem();
+                return new UnitOfWork();
             }
         }
     }

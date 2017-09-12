@@ -7,7 +7,7 @@ namespace BLL
     public interface IVideoService
     {
         //C
-        void Add(VideoBO video);
+        VideoBO Add(VideoBO video);
         void AddVideos(List<VideoBO> videos);
         //R
         List<VideoBO> GetAll();
@@ -17,6 +17,6 @@ namespace BLL
         //U
         VideoBO Update(VideoBO video);
         //D
-        void Delete(int Id);
+        VideoBO Delete(int Id);
     }
 }

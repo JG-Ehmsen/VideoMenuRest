@@ -8,7 +8,7 @@ namespace GUI
 {
     class GUI
     {
-        public BLLFacade BLLFacade = BLLFacade.getInstance();
+        public BLLFacade BLLFacade = BLLFacade.GetInstance();
 
         public GUI()
         {

@@ -28,22 +28,6 @@ namespace VideoRestAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                //var facade = new BLLFacade();
-                //facade.VideoService.Add(
-                //    new VideoBO()
-                //    {
-                //        Title = "HEhehe",
-                //        Author = "hashdsah",
-                //        Genre = "Random"
-                //    });
-                //facade.VideoService.Add(
-                //    new VideoBO()
-                //    {
-                //        Title = "asdasd",
-                //        Author = "hasda",
-                //        Genre = "ddass"
-                //    });
             }
 
             app.UseMvc();

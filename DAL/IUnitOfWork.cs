@@ -8,6 +8,8 @@ namespace DAL
     {
         IVideoRepository VideoRepository { get; }
 
+        IRentalRepository RentalRepository { get; }
+
         int Complete();
     }
 }

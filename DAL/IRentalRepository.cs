@@ -5,17 +5,17 @@ using System.Text;
 
 namespace DAL
 {
-    public interface IVideoRepository
+    public interface IRentalRepository
     {
         //C
-        Video Add(Video video);
+        Rental Add(Rental rental);
         //R
-        List<Video> GetAll();
-        Video Get(int Id);
+        List<Rental> GetAll();
+        Rental Get(int Id);
         int GetCount();
         //U
-        
+
         //D
-        Video Delete(int Id);
+        Rental Delete(int Id);
     }
 }

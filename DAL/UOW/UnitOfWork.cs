@@ -6,15 +6,19 @@ using System.Text;
 
 namespace DAL.UOW
 {
-    public class UnitOfWorkMem : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public IVideoRepository VideoRepository { get; internal set; }
-        private InMemoryContext context;
 
-        public UnitOfWorkMem()
+        public IRentalRepository RentalRepository { get; internal set; }
+
+        private VideoAppContext context;
+
+        public UnitOfWork()
         {
-            context = new InMemoryContext();
-            VideoRepository = new VideoRepositoryEFMemory(context);
+            context = new VideoAppContext();
+            VideoRepository = new VideoRepository(context);
+            RentalRepository = new RentalRepository(context);
         }
 
         public int Complete()

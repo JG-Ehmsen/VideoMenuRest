@@ -7,30 +7,33 @@ using DAL.Entities;
 
 namespace DAL.Repositories
 {
-    class VideoRepositoryEFMemory : IVideoRepository
+    class VideoRepository : IVideoRepository
     {
-        InMemoryContext _context;
+        VideoAppContext _context;
 
-        public VideoRepositoryEFMemory(InMemoryContext context)
+        public VideoRepository(VideoAppContext context)
         {
             _context = context;
         }
 
-        public void Add(Video video)
+        public Video Add(Video video)
         {
             _context.Videos.Add(video);
+            return video;
         }
 
-        public void Delete(int Id)
+        public Video Delete(int Id)
         {
             Video vid = Get(Id);
             if (vid != null)
             {
                 _context.Remove(vid);
+                return vid;
             }
             else
             {
                 Console.WriteLine("Somethings' wrong!");
+                return null;
             }
         }
 
