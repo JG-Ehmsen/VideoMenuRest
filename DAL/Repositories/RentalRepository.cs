@@ -36,7 +36,8 @@ namespace DAL.Repositories
 
         public List<Rental> GetAll()
         {
-            return _context.Rentals.ToList();
+            var list = _context.Rentals.ToList();
+            return list;
         }
 
         public int GetCount()

@@ -23,7 +23,18 @@ namespace DAL.UOW
 
         public int Complete()
         {
-            return context.SaveChanges();
+
+            try
+            {
+                var value = context.SaveChanges();
+                return value;
+
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.StackTrace);
+                throw e;
+            }
+           
         }
 
         public void Dispose()

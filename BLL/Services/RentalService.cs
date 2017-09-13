@@ -13,6 +13,7 @@ namespace BLL.Services
 
         private RentalConverter conv;
         private DALFacade _facade;
+
         public RentalService(DALFacade facade)
         {
             conv = new RentalConverter();

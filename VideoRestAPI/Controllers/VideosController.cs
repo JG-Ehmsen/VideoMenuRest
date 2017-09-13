@@ -10,7 +10,7 @@ namespace VideoRestAPI.Controllers
     [Route("api/[controller]")]
     public class VideosController : Controller
     {
-        BLLFacade facade = BLLFacade.GetInstance();
+        BLLFacade facade = new BLLFacade();
 
         // GET: api/Videos
         [HttpGet]
