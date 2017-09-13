@@ -10,24 +10,34 @@ namespace BLL.Converters
     {
         internal Video Convert(VideoBO vid)
         {
-            return new Video()
+            if (vid != null)
             {
-                ID = vid.ID,
-                Title = vid.Title,
-                Author = vid.Author,
-                Genre = vid.Genre
-            };
+                return new Video()
+                {
+                    ID = vid.ID,
+                    Title = vid.Title,
+                    Author = vid.Author,
+                    Genre = vid.Genre
+                };
+            }
+            else
+                return null;
         }
 
         internal VideoBO Convert(Video vid)
         {
-            return new VideoBO()
+            if (vid != null)
             {
-                ID = vid.ID,
-                Title = vid.Title,
-                Author = vid.Author,
-                Genre = vid.Genre
-            };
+                return new VideoBO()
+                {
+                    ID = vid.ID,
+                    Title = vid.Title,
+                    Author = vid.Author,
+                    Genre = vid.Genre
+                };
+            }
+            else
+                return null;
         }
     }
 }

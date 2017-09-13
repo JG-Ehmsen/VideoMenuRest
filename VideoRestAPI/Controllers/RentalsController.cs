@@ -20,10 +20,16 @@ namespace VideoRestAPI.Controllers
         }
 
         // GET: api/Rentals/5
-        [HttpGet("{id}", Name = "Get")]
-        public RentalBO Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            return facade.RentalService.Get(id);
+            var rental = facade.RentalService.Get(id);
+            if (rental == null)
+            {
+                return StatusCode(404, "No rental found.");
+            }
+            else
+                return Ok(rental);
         }
         
         // POST: api/Rentals
@@ -58,9 +64,15 @@ namespace VideoRestAPI.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            facade.RentalService.Delete(id);
+            var rental = facade.RentalService.Delete(id);
+            if (rental != null)
+            {
+                return Ok(rental);
+            }
+            else
+                return StatusCode(404, "No rental found with that ID.");
         }
     }
 }

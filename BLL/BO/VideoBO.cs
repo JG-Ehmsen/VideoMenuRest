@@ -10,13 +10,9 @@ namespace BLL.BO
         public int ID { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [MinLength(3)]
         public string Title { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        [MinLength(3)]
         public string Author { get; set; }
         public string Genre { get; set; }
 

@@ -10,12 +10,10 @@ namespace BLL
     {
 
         private static BLLFacade instance;
-        private static DALFacade dalFacade;
 
         private BLLFacade()
         {
             GenerateVideos(20);
-            dalFacade = new DALFacade();
         }
 
         public static BLLFacade GetInstance()
@@ -28,12 +26,12 @@ namespace BLL
 
         public IVideoService VideoService
         {
-            get { return new VideoService(dalFacade); }
+            get { return new VideoService(new DALFacade()); }
         }
 
         public IRentalService RentalService
         {
-            get { return new RentalService(dalFacade); }
+            get { return new RentalService(new DALFacade()); }
         }
 
         private void GenerateVideos(int count)

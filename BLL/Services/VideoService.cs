@@ -24,9 +24,9 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
 
-                uow.VideoRepository.Add(conv.Convert(video));
+                var vid = uow.VideoRepository.Add(conv.Convert(video));
                 uow.Complete();
-                return video;
+                return conv.Convert(vid);
             }
         }
 
@@ -47,9 +47,14 @@ namespace BLL.Services
             using (var uow = facade.UnitOfWork)
             {
                 var vid = uow.VideoRepository.Get(Id);
-                uow.VideoRepository.Delete(Id);
-                uow.Complete();
-                return conv.Convert(vid);
+                if (vid != null)
+                {
+                    uow.VideoRepository.Delete(Id);
+                    uow.Complete();
+                    return conv.Convert(vid);
+                }
+                else
+                    return null;
             }
         }
 

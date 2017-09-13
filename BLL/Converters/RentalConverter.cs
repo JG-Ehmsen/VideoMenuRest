@@ -10,22 +10,32 @@ namespace BLL.Converters
     {
         internal Rental Convert(RentalBO rental)
         {
-            return new Rental()
+            if (rental != null)
             {
-                Id = rental.Id,
-                RentalDate = rental.RentalDate,
-                DeliveryDate = rental.DeliveryDate
-            };
+                return new Rental()
+                {
+                    Id = rental.Id,
+                    RentalDate = rental.RentalDate,
+                    DeliveryDate = rental.DeliveryDate
+                };
+            }
+            else
+                return null;
         }
 
         internal RentalBO Convert(Rental rental)
         {
-            return new RentalBO()
+            if (rental != null)
             {
-                Id = rental.Id,
-                RentalDate = rental.RentalDate,
-                DeliveryDate = rental.DeliveryDate
-            };
+                return new RentalBO()
+                {
+                    Id = rental.Id,
+                    RentalDate = rental.RentalDate,
+                    DeliveryDate = rental.DeliveryDate
+                };
+            }
+            else
+                return null;
         }
     }
 }

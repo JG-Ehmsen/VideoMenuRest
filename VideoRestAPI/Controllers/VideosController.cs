@@ -20,10 +20,16 @@ namespace VideoRestAPI.Controllers
         }
 
         // GET: api/Videos/5
-        [HttpGet("{id}", Name = "Get")]
-        public VideoBO Get(int id)
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
         {
-            return facade.VideoService.Get(id);
+            var Vid = facade.VideoService.Get(id);
+            if (Vid == null)
+            {
+                return StatusCode(404, "No video found.");
+            }
+            else
+                return Ok(Vid);
         }
         
         // POST: api/Videos
@@ -32,7 +38,7 @@ namespace VideoRestAPI.Controllers
         {
             if(!TryValidateModel(vid))
             {
-                return BadRequest(ModelState.IsValid);
+                return BadRequest(ModelState);
             }
 
             return Ok(facade.VideoService.Add(vid));
@@ -59,9 +65,15 @@ namespace VideoRestAPI.Controllers
         
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            facade.VideoService.Delete(id);
+            var vid = facade.VideoService.Delete(id);
+            if (vid != null)
+            {
+                return Ok(vid);
+            }
+            else
+                return StatusCode(404, "No video found with that ID");
         }
     }
 }

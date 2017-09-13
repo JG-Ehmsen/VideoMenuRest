@@ -33,9 +33,15 @@ namespace BLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                var rentalEntity = _facade.UnitOfWork.RentalRepository.Delete(Id);
-                uow.Complete();
-                return conv.Convert(rentalEntity);
+                var rentalEntity = _facade.UnitOfWork.RentalRepository.Get(Id);
+                if (rentalEntity != null)
+                {
+                    _facade.UnitOfWork.RentalRepository.Delete(Id);
+                    uow.Complete();
+                    return conv.Convert(rentalEntity);
+                }
+                else
+                    return null;
             }
         }
 
