@@ -4,11 +4,13 @@ using System.Text;
 using DAL.Context;
 using System.Linq;
 using DAL.Entities;
+using System.Diagnostics;
 
 namespace DAL.Repositories
 {
     class VideoRepository : IVideoRepository
     {
+
         VideoAppContext _context;
 
         public VideoRepository(VideoAppContext context)
@@ -18,8 +20,17 @@ namespace DAL.Repositories
 
         public Video Add(Video video)
         {
-            _context.Videos.Add(video);
-            return video;
+            var vid = Get(video.ID);
+            if (vid == null)
+            {
+                _context.Add(video);
+                return video;
+            }
+            else
+            {
+                Console.WriteLine("Somethings' wrong!");
+                return null;
+            }
         }
 
         public Video Delete(int Id)

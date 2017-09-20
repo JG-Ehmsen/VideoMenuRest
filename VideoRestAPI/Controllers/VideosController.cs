@@ -36,12 +36,15 @@ namespace VideoRestAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]VideoBO vid)
         {
-            if(!TryValidateModel(vid))
+            if (!TryValidateModel(vid))
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState.IsValid);
             }
-
-            return Ok(facade.VideoService.Add(vid));
+            var video = facade.VideoService.Add(vid);
+            if (video != null)
+                return Ok(video);
+            else
+                return BadRequest("ID already exists.");
         }
         
         // PUT: api/Videos/5

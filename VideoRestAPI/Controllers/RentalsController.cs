@@ -40,8 +40,11 @@ namespace VideoRestAPI.Controllers
             {
                 return BadRequest(ModelState.IsValid);
             }
-
-            return Ok(facade.RentalService.Add(rental));
+            var rent = facade.RentalService.Add(rental);
+            if (rent != null)
+                return Ok(rent);
+            else
+                return BadRequest("ID already exists.");
         }
         
         // PUT: api/Rentals/5
