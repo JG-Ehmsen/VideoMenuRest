@@ -7,5 +7,6 @@ namespace DAL.Entities
         public int Id { get; set; }
         public DateTime RentalDate { get; set; }
         public DateTime DeliveryDate { get; set; }
+        public Video Video { get; set; }
     }
 }

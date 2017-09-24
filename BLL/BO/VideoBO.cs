@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BLL.BO
 {
@@ -12,6 +13,8 @@ namespace BLL.BO
         [Required]
         public string Author { get; set; }
         public string Genre { get; set; }
+
+        public List<RentalBO> Rentals { get; set; }
 
         public override string ToString()
         {

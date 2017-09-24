@@ -5,6 +5,7 @@ using DAL.Entities;
 using DAL.Context;
 using System.Linq;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -21,9 +22,13 @@ namespace DAL.Repositories
         public Rental Add(Rental rental)
         {
             var rent = Get(rental.Id);
-            if (rental == null)
+            if (rent == null)
             {
-                _context.Add(rental);
+                if (rental.Video != null)
+                {
+                    _context.Entry(rental.Video).State = EntityState.Unchanged;
+                }
+                _context.Rentals.Add(rental);
                 return rental;
             }
             else
@@ -38,7 +43,7 @@ namespace DAL.Repositories
             var rental = Get(Id);
             if (rental != null)
             {
-                _context.Remove(rental);
+                _context.Rentals.Remove(rental);
                 return rental;
             }
             else
@@ -50,15 +55,12 @@ namespace DAL.Repositories
 
         public Rental Get(int Id)
         {
-            Debug.WriteLine("Removed video with ID: " + Id);
             return _context.Rentals.FirstOrDefault(o => o.Id == Id);
         }
 
         public List<Rental> GetAll()
         {
-            var list = _context.Rentals.ToList();
-            Debug.WriteLine("Returning a list!");
-            return list;
+            return _context.Rentals.Include(r => r.Video).ToList();
         }
 
         public int GetCount()

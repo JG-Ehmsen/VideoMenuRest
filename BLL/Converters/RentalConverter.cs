@@ -16,7 +16,8 @@ namespace BLL.Converters
                 {
                     Id = rental.Id,
                     RentalDate = rental.RentalDate,
-                    DeliveryDate = rental.DeliveryDate
+                    DeliveryDate = rental.DeliveryDate,
+                    Video = new VideoConverter().Convert(rental.Video)
                 };
             }
             else
@@ -31,7 +32,8 @@ namespace BLL.Converters
                 {
                     Id = rental.Id,
                     RentalDate = rental.RentalDate,
-                    DeliveryDate = rental.DeliveryDate
+                    DeliveryDate = rental.DeliveryDate,
+                    Video = new VideoConverter().Convert(rental.Video)
                 };
             }
             else

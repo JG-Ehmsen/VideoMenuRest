@@ -58,20 +58,31 @@ namespace VideoRestAPI
 
                 Random r = new Random();
 
+                VideoBO vido = new VideoBO()
+                {
+                    Title = "RentalVideo",
+                    Author = "Rental Guy",
+                    Genre = "This is a genre"
+                };
+                facade.VideoService.Add(vido);
+
                 facade.RentalService.Add(new RentalBO()
                 {
                     DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5)))
+                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
+                    Video = vido
                 });
                 facade.RentalService.Add(new RentalBO()
                 {
                     DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5)))
+                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
+                    Video = vido
                 });
                 facade.RentalService.Add(new RentalBO()
                 {
                     DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5)))
+                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
+                    Video = vido
                 });
 
             }
