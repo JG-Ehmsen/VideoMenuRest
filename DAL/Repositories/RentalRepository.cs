@@ -24,16 +24,11 @@ namespace DAL.Repositories
             var rent = Get(rental.Id);
             if (rent == null)
             {
-                if (rental.Video != null)
-                {
-                    _context.Entry(rental.Video).State = EntityState.Unchanged;
-                }
                 _context.Rentals.Add(rental);
                 return rental;
             }
             else
             {
-                Console.WriteLine("Somethings' wrong!");
                 return null;
             }
         }
@@ -48,7 +43,6 @@ namespace DAL.Repositories
             }
             else
             {
-                Console.WriteLine("Somethings' wrong!");
                 return null;
             }
         }
@@ -60,7 +54,7 @@ namespace DAL.Repositories
 
         public List<Rental> GetAll()
         {
-            return _context.Rentals.Include(r => r.Video).ToList();
+            return _context.Rentals.ToList();
         }
 
         public int GetCount()

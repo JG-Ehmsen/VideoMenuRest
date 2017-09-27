@@ -12,6 +12,7 @@ namespace BLL.BO
         [Required]
         public DateTime DeliveryDate { get; set; }
 
+        public int VideoId { get; set; }
         public VideoBO Video { get; set; }
 
         public override string ToString()

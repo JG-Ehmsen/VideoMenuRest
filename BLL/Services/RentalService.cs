@@ -65,7 +65,10 @@ namespace BLL.Services
         {
             using (var uow = _facade.UnitOfWork)
             {
-                return conv.Convert(uow.RentalRepository.Get(Id));
+                var rentalEntity = uow.RentalRepository.Get(Id);
+                if (rentalEntity == null) return null;
+                rentalEntity.Video = uow.VideoRepository.Get(rentalEntity.VideoId);
+                return conv.Convert(rentalEntity);
             }
         }
 
@@ -94,7 +97,9 @@ namespace BLL.Services
                 {
                     uow.RentalRepository.Get(RentalEntity.Id).DeliveryDate = rental.DeliveryDate;
                     uow.RentalRepository.Get(RentalEntity.Id).RentalDate = rental.RentalDate;
+                    uow.RentalRepository.Get(RentalEntity.Id).VideoId = rental.VideoId;
                     uow.Complete();
+                    RentalEntity.Video = uow.VideoRepository.Get(RentalEntity.VideoId);
                     return conv.Convert(RentalEntity);
                 }
                 else

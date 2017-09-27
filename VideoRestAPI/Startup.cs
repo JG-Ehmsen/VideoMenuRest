@@ -56,35 +56,15 @@ namespace VideoRestAPI
                     facade.VideoService.Add(vid);
                 }
 
-                Random r = new Random();
-
-                VideoBO vido = new VideoBO()
+                for (int i = 0; i <= 2000; i++)
                 {
-                    Title = "RentalVideo",
-                    Author = "Rental Guy",
-                    Genre = "This is a genre"
-                };
-                facade.VideoService.Add(vido);
-
-                facade.RentalService.Add(new RentalBO()
-                {
-                    DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
-                    Video = vido
-                });
-                facade.RentalService.Add(new RentalBO()
-                {
-                    DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
-                    Video = vido
-                });
-                facade.RentalService.Add(new RentalBO()
-                {
-                    DeliveryDate = DateTime.Now.AddMonths(r.Next(5)),
-                    RentalDate = DateTime.Now.AddMonths(-(r.Next(5))),
-                    Video = vido
-                });
-
+                    facade.RentalService.Add(new RentalBO()
+                    {
+                        DeliveryDate = DateTime.Now.AddMonths(rnd.Next(5)),
+                        RentalDate = DateTime.Now.AddMonths(-(rnd.Next(5))),
+                        VideoId = facade.VideoService.Get(rnd.Next(facade.VideoService.GetCount())+1).ID
+                    });
+                }
             }
 
             app.UseMvc();
