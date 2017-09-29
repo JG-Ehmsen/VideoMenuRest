@@ -60,6 +60,10 @@ namespace VideoRestAPI
                     int r2 = rnd.Next(Authors.Length);
                     vid.Author = Authors[r2];
 
+                    r2 = rnd.Next(Genres.Length);
+
+                    vid.Genres.Add(facade.GenreService.Get(r2));
+
                     facade.VideoService.Add(vid);
                 }
 
