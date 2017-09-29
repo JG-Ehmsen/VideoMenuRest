@@ -20,6 +20,11 @@ namespace BLL
             get { return new RentalService(new DALFacade()); }
         }
 
-      
+        public IGenreService GenreService
+        {
+            get { return new GenreService(new DALFacade()); }
+        }
+
+
     }
 }

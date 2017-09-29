@@ -33,10 +33,20 @@ namespace VideoRestAPI
 
                 var facade = new BLLFacade();
 
+                String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DYI" };
+
+                foreach (var genre in Genres)
+                {
+                    GenreBO gen = new GenreBO()
+                    {
+                        Genre = genre
+                    };
+                    facade.GenreService.Add(gen);
+                }
+
 
                 String[] Authors = { "Billy Bob", "MacMoe", "SuperCoolDUde99", "Danny the Dude", "Me", "RealPerson", "KimK", "Someone Else" };
 
-                String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DYI" };
 
                 Random rnd = new Random();
 
@@ -49,9 +59,6 @@ namespace VideoRestAPI
                     };
                     int r2 = rnd.Next(Authors.Length);
                     vid.Author = Authors[r2];
-
-                    r2 = rnd.Next(Genres.Length);
-                    vid.Genre = Genres[r2];
 
                     facade.VideoService.Add(vid);
                 }

@@ -12,13 +12,14 @@ namespace BLL.BO
 
         [Required]
         public string Author { get; set; }
-        public string Genre { get; set; }
+
+        public List<GenreBO> Genres { get; set; }
 
         public List<RentalBO> Rentals { get; set; }
 
         public override string ToString()
         {
-            return "#" + this.ID + " - " + this.Title + " by " + Author + " - " + this.Genre;
+            return "#" + this.ID + " - " + this.Title + " by " + Author;
         }
     }
 }

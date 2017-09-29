@@ -12,6 +12,8 @@ namespace DAL.UOW
 
         public IRentalRepository RentalRepository { get; internal set; }
 
+        public IGenreRepository GenreRepository { get; internal set; }
+
         private VideoAppContext context;
 
         public UnitOfWork()
@@ -19,6 +21,7 @@ namespace DAL.UOW
             context = new VideoAppContext();
             VideoRepository = new VideoRepository(context);
             RentalRepository = new RentalRepository(context);
+            GenreRepository = new GenreRepository(context);
         }
 
         public int Complete()

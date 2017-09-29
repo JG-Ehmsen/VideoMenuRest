@@ -10,6 +10,8 @@ namespace DAL
 
         IRentalRepository RentalRepository { get; }
 
+        IGenreRepository GenreRepository { get; }
+
         int Complete();
     }
 }
