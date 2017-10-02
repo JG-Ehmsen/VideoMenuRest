@@ -5,6 +5,7 @@ using DAL.Context;
 using System.Linq;
 using DAL.Entities;
 using System.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL.Repositories
 {
@@ -55,7 +56,7 @@ namespace DAL.Repositories
 
         public List<Video> GetAll()
         {
-            return _context.Videos.ToList();
+            return _context.Videos.Include(v => v.Genres).ThenInclude(vg => vg.Genre).ToList();
         }
 
         public int GetCount()

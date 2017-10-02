@@ -9,6 +9,6 @@ namespace DAL.Entities
         public int Id { get; set; }
         public string _Genre { get; set; }
 
-        List<VideoGenre> Videos { get; set; }
+        public List<VideoGenre> Videos { get; set; }
     }
 }

@@ -114,7 +114,7 @@ namespace GUI
                 {
                     Title = name,
                     Author = author,
-                    Genre = genre
+                    //Genre = genre
                 };
                 videos.Add(tempVid);
                 WriteLine("Actions:");
@@ -149,7 +149,7 @@ namespace GUI
             {
                 Title = name,
                 Author = author,
-                Genre = genre
+                //Genre = genre
             };
             BLLFacade.VideoService.Add(tempVid);
             ReadLine();
@@ -289,7 +289,7 @@ namespace GUI
                         WriteLine("Enter author:");
                         video.Author = ReadLine();
                         WriteLine("Enter genre:");
-                        video.Genre = ReadLine();
+                        //video.Genre = ReadLine();
                         WriteLine("Video has been edited!");
                         BLLFacade.VideoService.Update(video);
                         ReadLine();

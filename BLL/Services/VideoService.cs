@@ -91,7 +91,7 @@ namespace BLL.Services
                 {
                     uow.VideoRepository.Get(video.ID).Author = video.Author;
                     uow.VideoRepository.Get(video.ID).Title = video.Title;
-                    uow.VideoRepository.Get(video.ID).Genre = video.Genre;
+                    //uow.VideoRepository.Get(video.ID).Genres = video.Genres;
                     uow.Complete();
                     return conv.Convert(vid);
                 }

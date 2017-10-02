@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using BLL;
 using BLL.BO;
 using System;
+using System.Collections.Generic;
 
 namespace VideoRestAPI
 {
@@ -60,9 +61,9 @@ namespace VideoRestAPI
                     int r2 = rnd.Next(Authors.Length);
                     vid.Author = Authors[r2];
 
-                    r2 = rnd.Next(Genres.Length);
+                    r2 = rnd.Next(Genres.Length) + 1;
 
-                    vid.Genres.Add(facade.GenreService.Get(r2));
+                    vid.Genres = new List<GenreBO>() { (facade.GenreService.Get(r2)) };
 
                     facade.VideoService.Add(vid);
                 }
