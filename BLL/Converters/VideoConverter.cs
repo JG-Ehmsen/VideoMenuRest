@@ -38,11 +38,7 @@ namespace BLL.Converters
                     ID = vid.ID,
                     Title = vid.Title,
                     Author = vid.Author,
-                    Genres = vid.Genres?.Select(g => new GenreBO()
-                    {
-                        Id = g.VideoID,
-                        Genre = g.Genre?._Genre
-                    }).ToList()
+                    GenreIDs = vid.Genres?.Select(g => g.GenreID).ToList(),
                 };
             }
             else

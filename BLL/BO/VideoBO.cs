@@ -14,6 +14,7 @@ namespace BLL.BO
         public string Author { get; set; }
 
         public List<GenreBO> Genres { get; set; }
+        public List<int> GenreIDs { get; set; }
 
         public List<RentalBO> Rentals { get; set; }
 

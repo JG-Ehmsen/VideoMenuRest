@@ -56,7 +56,7 @@ namespace DAL.Repositories
 
         public List<Video> GetAll()
         {
-            return _context.Videos.Include(v => v.Genres).ThenInclude(vg => vg.Genre).ToList();
+            return _context.Videos.Include(v => v.Genres).ToList();
         }
 
         public int GetCount()
