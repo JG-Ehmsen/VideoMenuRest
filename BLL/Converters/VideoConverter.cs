@@ -18,9 +18,9 @@ namespace BLL.Converters
                     ID = vid.ID,
                     Title = vid.Title,
                     Author = vid.Author,
-                    Genres = vid.Genres?.Select(g => new VideoGenre()
+                    Genres = vid.GenreIDs?.Select(gID => new VideoGenre()
                     {
-                        GenreID = g.Id,
+                        GenreID = gID,
                         VideoID = vid.ID
                     }).ToList(),
                 };

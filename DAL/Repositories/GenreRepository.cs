@@ -54,6 +54,13 @@ namespace DAL.Repositories
             return _context.Genres.ToList();
         }
 
+        public IEnumerable<Genre> GetAllById(List<int> ids)
+        {
+            if (ids == null) return null;
+
+            return _context.Genres.Where(g => ids.Contains(g.Id));
+        }
+
         public int GetCount()
         {
             return _context.Genres.Count();

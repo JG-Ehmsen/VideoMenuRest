@@ -19,9 +19,11 @@ namespace DAL.UOW
         public UnitOfWork()
         {
             context = new VideoAppContext();
+            context.Database.EnsureCreated();
             VideoRepository = new VideoRepository(context);
             RentalRepository = new RentalRepository(context);
             GenreRepository = new GenreRepository(context);
+
         }
 
         public int Complete()

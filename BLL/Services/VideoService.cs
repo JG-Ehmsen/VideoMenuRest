@@ -12,11 +12,13 @@ namespace BLL.Services
     {
         DALFacade facade;
         VideoConverter conv;
+        GenreConverter gConv;
 
         public VideoService(DALFacade facade)
         {
             this.facade = facade;
             this.conv = new VideoConverter();
+            this.gConv = new GenreConverter();
         }
 
         public VideoBO Add(VideoBO video)
@@ -62,7 +64,13 @@ namespace BLL.Services
         {
             using (var uow = facade.UnitOfWork)
             {
-                return conv.Convert(uow.VideoRepository.Get(Id));
+                var vid = conv.Convert(uow.VideoRepository.Get(Id));
+
+                //vid.Genres = vid.GenreIDs?.Select(id => gConv.Convert(uow.GenreRepository.Get(id))).ToList();
+
+                vid.Genres = uow.GenreRepository.GetAllById(vid.GenreIDs).Select(g => gConv.Convert(g)).ToList();
+
+                return vid;
             }
         }
 
@@ -89,9 +97,20 @@ namespace BLL.Services
                 Video vid = uow.VideoRepository.Get(video.ID);
                 if (vid != null)
                 {
-                    uow.VideoRepository.Get(video.ID).Author = video.Author;
-                    uow.VideoRepository.Get(video.ID).Title = video.Title;
+                    var videoUpdated = conv.Convert(video);
+                    //uow.VideoRepository.Get(video.ID).Author = video.Author;
+                    //uow.VideoRepository.Get(video.ID).Title = video.Title;
+                    vid.Author = videoUpdated.Author;
+                    vid.Title = videoUpdated.Title;
+
                     //uow.VideoRepository.Get(video.ID).Genres = video.Genres;
+
+                    vid.Genres.RemoveAll(vg => !videoUpdated.Genres.Exists(g => g.GenreID == vg.GenreID && g.VideoID == vg.VideoID));
+
+                    videoUpdated.Genres.RemoveAll(vg => vid.Genres.Exists(g => g.GenreID == vg.GenreID && g.VideoID == vg.VideoID));
+
+                    vid.Genres.AddRange(videoUpdated.Genres);
+
                     uow.Complete();
                     return conv.Convert(vid);
                 }

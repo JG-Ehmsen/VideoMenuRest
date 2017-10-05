@@ -51,7 +51,7 @@ namespace DAL.Repositories
 
         public Video Get(int Id)
         {
-            return _context.Videos.FirstOrDefault(x => x.ID == Id);
+            return _context.Videos.Include(v => v.Genres).FirstOrDefault(x => x.ID == Id);
         }
 
         public List<Video> GetAll()

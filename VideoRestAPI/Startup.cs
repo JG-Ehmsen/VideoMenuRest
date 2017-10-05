@@ -32,9 +32,9 @@ namespace VideoRestAPI
                 app.UseDeveloperExceptionPage();
 
 
-                var facade = new BLLFacade();
+               /* var facade = new BLLFacade();
 
-                String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DYI" };
+                String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DIY" };
 
                 foreach (var genre in Genres)
                 {
@@ -63,12 +63,12 @@ namespace VideoRestAPI
 
                     r2 = rnd.Next(Genres.Length) + 1;
 
-                    vid.Genres = new List<GenreBO>() { (facade.GenreService.Get(r2)) };
+                    vid.GenreIDs = new List<int>() { (facade.GenreService.Get(r2).Id) };
 
                     facade.VideoService.Add(vid);
                 }
 
-                for (int i = 0; i <= 2000; i++)
+                for (int i = 0; i <= 20; i++)
                 {
                     facade.RentalService.Add(new RentalBO()
                     {
@@ -77,6 +77,7 @@ namespace VideoRestAPI
                         VideoId = facade.VideoService.Get(rnd.Next(facade.VideoService.GetCount())+1).ID
                     });
                 }
+                */
             }
 
             app.UseMvc();
