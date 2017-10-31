@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using BLL;
 using BLL.BO;
 using System;
+using Microsoft.AspNetCore.Cors;
 
 namespace VideoRestAPI.Controllers
 {
+    [EnableCors("MyPolicy")]
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class VideosController : Controller
