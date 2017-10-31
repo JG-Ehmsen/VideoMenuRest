@@ -1,2 +1,9 @@
 language: csharp
 solution: VideoMenuRest.sln
+
+matrix:
+  include:
+    - dotnet: 2.0
+      mono: none
+      dist: trusty
+    - mono: latest
