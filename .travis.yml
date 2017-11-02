@@ -1,9 +1,7 @@
 language: csharp
-solution: VideoMenuRest.sln
-
-matrix:
-  include:
-    - dotnet: 2.0
-      mono: none
-      dist: trusty
-    - mono: latest
+mono: none
+dotnet: 2.0.0
+script:
+  - dotnet restore
+  - dotnet build ./TheLog/
+  - dotnet build ./TheLog.Demos/
