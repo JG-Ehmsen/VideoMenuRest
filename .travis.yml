@@ -4,9 +4,9 @@ dotnet: 2.0.0
 dist: trusty
 install:
 - dotnet restore
+- nuget restore
 script:
 - dotnet build
 branches:
   only:
   - master
-  - development
