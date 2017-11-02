@@ -1,17 +1,15 @@
 language: csharp
-mono: none
-dotnet: 2.0.0
 dist: trusty
+mono: none
 sudo: required
+dotnet: 2.0.0
 solution: VideoMenuRest.sln
-before_script:
-  - chmod +x build.sh
- script:
-  - ./build.sh
+branches:
+  only:
+  - master
 install:
 - dotnet restore
 script:
 - dotnet build
-branches:
-  only:
-  - master
+- dotnet clean -c Release
+- dotnet build VideoMenuRest.sln -c Release
