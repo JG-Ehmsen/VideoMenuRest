@@ -6,18 +6,18 @@ namespace DAL.Context
     class VideoAppContext : DbContext
     {
         static DbContextOptions<VideoAppContext> options = new DbContextOptionsBuilder<VideoAppContext>().UseInMemoryDatabase("TheDB").Options;
-        /*public VideoAppContext() : base(options)
+        public VideoAppContext() : base(options)
         {
-            
-        }*/
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(@"Server = tcp:videomenu.database.windows.net,1433; Initial Catalog = VideoMenuAppDB; Persist Security Info = False; User ID = jge2101; Password =1234asdfASDF; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
-            }
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    if (!optionsBuilder.IsConfigured)
+        //    {
+        //        optionsBuilder.UseSqlServer(@"Server = tcp:videomenu.database.windows.net,1433; Initial Catalog = VideoMenuAppDB; Persist Security Info = False; User ID = jge2101; Password =1234asdfASDF; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

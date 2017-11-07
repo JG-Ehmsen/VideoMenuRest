@@ -34,7 +34,7 @@ namespace VideoRestAPI
                 app.UseDeveloperExceptionPage();
 
 
-               /* var facade = new BLLFacade();
+                var facade = new BLLFacade();
 
                 String[] Genres = { "Random", "Funny", "Sad", "Gaming", "Music", "Hobbies", "DIY" };
 
@@ -76,10 +76,10 @@ namespace VideoRestAPI
                     {
                         DeliveryDate = DateTime.Now.AddMonths(rnd.Next(5)),
                         RentalDate = DateTime.Now.AddMonths(-(rnd.Next(5))),
-                        VideoId = facade.VideoService.Get(rnd.Next(facade.VideoService.GetCount())+1).ID
+                        VideoId = facade.VideoService.Get(rnd.Next(facade.VideoService.GetCount()) + 1).ID
                     });
                 }
-                */
+
             }
 
             app.UseMvc();
